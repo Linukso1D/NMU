@@ -23,6 +23,7 @@ public class MainActivity extends ActionBarActivity {
         return true;
         //happy
         //any happy
+        //какой-то коммент
     }
 
     @Override
