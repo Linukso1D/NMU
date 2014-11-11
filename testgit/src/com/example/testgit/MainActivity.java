@@ -22,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
         //happy
+        //any happy
     }
 
     @Override
