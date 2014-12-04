@@ -1,0 +1,371 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/button_color_bg"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@id/main_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/button_color_press_grad"
+        android:gravity="center"
+        android:paddingTop="@dimen/text_view_padding_t_b"
+        android:text="17 мая, суббота, 5-а пара."
+        android:textColor="#ffffff"
+        android:textSize="@dimen/text_size" />
+
+    <TextView
+        android:id="@id/main_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/button_color_press_grad"
+        android:gravity="center"
+        android:paddingBottom="@dimen/text_view_padding_t_b"
+        android:text="Числитель(LAYOUT-sw768dp), 37 тиждень"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/text_size" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:layout_marginTop="@dimen/row1_padding_top">
+        <LinearLayout
+            android:id="@id/l_schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/schedule" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/schedule"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/l_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/l_schedule"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/news" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/news"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/l_teachers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/l_news"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/teachers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/teachers" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/teachers"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+         <LinearLayout
+            android:id="@id/l_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/l_teachers"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/library" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/library"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp" >
+        <LinearLayout
+            android:id="@id/l_maps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/maps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/maps" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/maps"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/l_transport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/l_maps"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/transport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/transport" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/transport"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@id/l_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/l_transport"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/calendar" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/calendar"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/l_webcams"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/l_calendar"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/webcams"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/webcams" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/webcams"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp" >
+
+
+        <LinearLayout
+            android:id="@id/l_freepc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/freepc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/freepc" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/freepc"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+          <LinearLayout
+            android:id="@id/l_directory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+              android:layout_toRightOf="@id/l_freepc"
+            android:layout_centerVertical="true"
+            android:orientation="vertical" 
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp">
+
+            <ImageButton
+                android:id="@id/directory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/directory" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/directory"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/l_blogs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/l_directory"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/blogs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/blogs" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/blogs"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/l_clubs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/l_blogs"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+        	android:paddingRight="30dp" >
+
+            <ImageButton
+                android:id="@id/clubs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style"
+                android:src="@drawable/clubs" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/clubs"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/text_button_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
