@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="main_text" type="id"/>
+    <item name="schedule" type="id"/>
+    <item name="news" type="id"/>
+    <item name="teachers" type="id"/>
+    <item name="library" type="id"/>
+    <item name="maps" type="id"/>
+    <item name="transport" type="id"/>
+    <item name="calendar" type="id"/>
+    <item name="webcams" type="id"/>
+    <item name="freepc" type="id"/>
+    <item name="directory" type="id"/>
+    <item name="blogs" type="id"/>
+    <item name="clubs" type="id"/>
+    
+    <item name="l_main_text" type="id"/>
+    <item name="l_schedule" type="id"/>
+    <item name="l_news" type="id"/>
+    <item name="l_teachers" type="id"/>
+    <item name="l_library" type="id"/>
+    <item name="l_maps" type="id"/>
+    <item name="l_transport" type="id"/>
+    <item name="l_calendar" type="id"/>
+    <item name="l_webcams" type="id"/>
+    <item name="l_freepc" type="id"/>
+    <item name="l_directory" type="id"/>
+    <item name="l_blogs" type="id"/>
+    <item name="l_clubs" type="id"/>
+    
+    <!-- Colors -->
+     <color name="button_color_bg"> #1569C7</color>
+     <color name="button_color_press">#151B54</color>
+     <color name="button_color_press_grad">#2B3856</color>
+     <color name="txt_color">#2345AC</color>
+    
+    <!-- Button Names -->
+    <string name="schedule">Расписание</string>
+    <string name="news">Новости</string>
+    <string name="teachers">Преподаватели</string>
+    <string name="library">Библиотека</string>
+    <string name="maps">Карта</string>
+    <string name="transport">Транспорт</string>
+    <string name="calendar">Календарь</string>
+    <string name="webcams">Вебкамеры</string>
+    <string name="freepc">Свободные ПК</string>
+    <string name="directory">Справочник</string>
+    <string name="blogs">Блоги</string>
+    <string name="clubs">Клубы</string>
+</resources>

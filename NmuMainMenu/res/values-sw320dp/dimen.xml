@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size">13sp</dimen>
+    <dimen name="text_rasp320">18sp</dimen>
+    <dimen name="text_rasp400">24sp</dimen>
+    <dimen name="text_rasp320_land">17sp</dimen>
+    <dimen name="text_button_size">13sp</dimen>
+    <dimen name="text_view_padding_t_b">5dp</dimen>
+    <dimen name="row1_padding_top">1dp</dimen>
+</resources>
