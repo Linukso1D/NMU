@@ -17,15 +17,17 @@ import android.widget.TabHost.OnTabChangeListener;
 
 
  public class rasp extends Activity {
+	 TabHost tabHost ;
+	
 	int tab_index,facult,group;
 	String teacher;
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		//сохранение значений
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rasp_zvonkov);
         
-        TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
+        tabHost = (TabHost) findViewById(android.R.id.tabhost);
         tabHost.setup();
         TabHost.TabSpec tabSpec;
         tabSpec = tabHost.newTabSpec("tag1");
@@ -95,18 +97,23 @@ import android.widget.TabHost.OnTabChangeListener;
 
 	
 
-	public void onSaveInstanceState(Bundle savedInstanceState) {
-		// Save the user's current game state
-       // tab_index=tabHost.getCurrentTab();
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		
+        tab_index=tabHost.getCurrentTab();
 	//	facult=spinner_facult.getId();
 	//	group=spinner_group.getId();
+        outState.putInt("T", tab_index);
 		
 		
 		
 	}
-	public void onRestoreInstanceState(Bundle savedInstanceState) {
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 	    // Always call the superclass so it can restore the view hierarchy
 	    super.onRestoreInstanceState(savedInstanceState);
+	    tab_index = savedInstanceState.getInt("T");
+	    //выставляем вкладку которую запомнили активной. 
+	    tabHost.setCurrentTab(tab_index);
 	    
 
 	}
