@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">  
+    <link rel="stylesheet" href="css/style.css">
+      <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+      <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/jquery-plugin-query-object-master/jquery.query-object.js"></script>
+</head>
+<body>
+    <div id="container">
+<img id="main_img" src="graphics/corp7/7_1.png" width="300" height="300" /> 
+    <table>
+  <tr>
+    <td id = "td1">Лестницы и Лифты</td>
+    <td id = "td2">Тех. помещения</td>
+  </tr>
+<tr>
+    <td id = "td3">Департаменты</td>
+    <td id = "td4">Кафедры и кабинеты сотрудников</td>
+  </tr>
+        <tr>
+    <td id = "td5">Аудитории</td>
+    <td id = "td6">Туалеты и душевые</td>
+  </tr>
+</table>
+         </div>
+<script>
+var count;
+var linksArray;
+var divWidth;
+var divHeight;
+$(document).ready(function(){// по окончанию загрузки страницы
+  
+    linksArray = ['graphics/corp7/7_1.png',
+                  'graphics/corp7/7_2.png',
+                  'graphics/corp7/7_3.png',
+                  'graphics/corp7/7_4.png',
+                  'graphics/corp7/7_5.png',
+                  'graphics/corp7/7_6.png',
+                  'graphics/corp7/7_7.png',
+                  'graphics/corp7/7_8.png',
+                  'graphics/corp7/7_9.png',
+                  'graphics/corp7/7_10.png',
+                  'graphics/corp7/7_11.png',
+                  'graphics/corp7/7_12.png',
+                  'graphics/corp7/7_13.png',
+                  'graphics/corp7/7_14.png'
+                  ];
+    count = $_GET('redirect');
+    divWidth = $_GET('divWidth');
+    divHeight = $_GET('divHeight');
+        $('#main_img').attr({
+           src: linksArray[count],
+            width: divWidth,
+            height: divHeight
+        }); 
+     $('tr').attr({
+            height: divHeight/5
+        }); 
+    $('table').attr({
+            width: divWidth
+        });
+    console.log('cnt - '+count);
+        count++;
+    $('#main_img').click(function(){// вешаем на клик по элементу с id = main_img
+        if(count > 13){
+            count = 0;
+        }
+        window.location.search = jQuery.query.set("redirect", count);
+        console.log( window.location.search);
+        console.log(linksArray[count])
+$('#main_img').attr({
+          src: linksArray[count]
+        }); 
+        count++;
+          $('#td2').text(count);
+    }) 
+});
+    function $_GET(key) {
+    var s = window.location.search;
+    s = s.match(new RegExp(key + '=([^&=]+)'));
+    return s ? s[1] : false;
+}
+
+</script>
+</body>
+</html>

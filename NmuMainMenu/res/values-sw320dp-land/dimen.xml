@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size">13sp</dimen>
+    <dimen name="text_button_size">13sp</dimen>
+    <dimen name="text_view_padding_t_b">5dp</dimen>
+      <dimen name="row1_padding_top">1dp</dimen>
+       
+    
+    <dimen name="map_padding_top_port">10dp</dimen>
+    <dimen name="map_padding_top_land">1dp</dimen>
+    <dimen name="map_button_text_size">11sp</dimen>
+    <dimen name="map_main_text_size">14sp</dimen>
+    <dimen name="map_padding_top_port_image">60dp</dimen>
+    <dimen name="map_input_height">40dp</dimen>
+    <!-- Button style -->
+     <dimen name="button_padding_top_bottom">10dp</dimen>
+    <dimen name="button_padding_left_right">5dp</dimen>
+    <!-- Image View values -->
+     <dimen name="web_view_width">200dp</dimen>
+     <dimen name="web_view_height">200dp</dimen>
+
+</resources>

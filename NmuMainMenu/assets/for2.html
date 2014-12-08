@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">  
+    <link rel="stylesheet" href="css/style.css">
+      <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+      <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/jquery-plugin-query-object-master/jquery.query-object.js"></script>
+</head>
+<body>
+    <div id="container">
+<img id="main_img" src="graphics/corp2/2_1.png" width="300" height="300" /> 
+    <table>
+  <tr>
+    <td id = "td1">Лестницы и Лифты</td>
+    <td id = "td2">Тех. помещения</td>
+  </tr>
+<tr>
+    <td id = "td3">Департаменты</td>
+    <td id = "td4">Кафедры и кабинеты сотрудников</td>
+  </tr>
+        <tr>
+    <td id = "td5">Аудитории</td>
+    <td id = "td6">Туалеты и душевые</td>
+  </tr>
+</table>
+         </div>
+<script>
+var count;
+var linksArray;
+var divWidth;
+var divHeight;    
+$(document).ready(function(){// по окончанию загрузки страницы
+    
+    linksArray = ['graphics/corp2/2_1.png',
+                  'graphics/corp2/2_2.png',
+                  'graphics/corp2/2_3.png'
+                  ];
+    count = $_GET('redirect');
+    divWidth = $_GET('divWidth');
+    divHeight = $_GET('divHeight');
+        $('#main_img').attr({
+          src: linksArray[count],
+            width: divWidth,
+            height: divHeight
+        }); 
+     $('tr').attr({
+            height: divHeight/5
+        }); 
+    $('table').attr({
+            width: divWidth
+        });
+    console.log('cnt - '+count);
+        count++;
+    $('#main_img').click(function(){// вешаем на клик по элементу с id = main_img
+        if(count > 2){
+            count = 0;
+        }
+        window.location.search = jQuery.query.set("redirect", count);
+        console.log( window.location.search);
+       console.log(linksArray[count])
+$('#main_img').attr({
+          src: linksArray[count]
+        }); 
+        count++;
+    }) 
+}); 
+    function $_GET(key) {
+    var s = window.location.search;
+    s = s.match(new RegExp(key + '=([^&=]+)'));
+    return s ? s[1] : false;
+}
+</script>
+</body>
+</html>

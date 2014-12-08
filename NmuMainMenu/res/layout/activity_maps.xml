@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/button_color_press_grad"
+            android:gravity="center"
+            android:paddingBottom="@dimen/map_padding_top_port"
+            android:paddingTop="@dimen/map_padding_top_port"
+            android:text="@string/maps_main_text"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/map_main_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp" >
+
+        <EditText
+            android:id="@id/maps_edit_text"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/map_input_height"
+            android:layout_alignParentLeft="true"
+            android:hint="@string/search_hint"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textSize="@dimen/map_main_text_size" >
+        </EditText>
+
+        <Button
+            android:id="@id/maps_search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/button_maps_style"
+            android:text="@string/map_button_search_text"
+            android:textSize="@dimen/map_button_text_size" >
+        </Button>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/map_padding_top_port"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp" >
+
+        <Button
+            android:id="@id/maps_down_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/button_maps_style"
+            android:text="@string/map_button_down_text"
+            android:textSize="@dimen/map_button_text_size" >
+        </Button>
+
+        <Button
+            android:id="@id/maps_up_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/button_maps_style"
+            android:text="@string/map_button_up_text"
+            android:textSize="@dimen/map_button_text_size" >
+        </Button>
+
+        <Button
+            android:id="@id/maps_main_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/button_maps_style"
+            android:text="@string/map_button_main_text"
+            android:textSize="@dimen/map_button_text_size" >
+        </Button>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@id/layout_web_id"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#FFFFFF" >
+
+        <WebView
+            android:id="@+id/image_view_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+           />
+    </FrameLayout>
+
+</LinearLayout>

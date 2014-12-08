@@ -46,6 +46,8 @@
      <color name="txt_color">#2345AC</color>
       <color name="blue_gray_color">#98AFC7</color>
       <color name="light_blue_color">#ADD8E6</color>
+      <color name="white">#FFFFFF</color>
+      
       <!-- Mask image colors -->
      <color name="corpus_1_color">#ff870014</color>
      <color name="corpus_2_color">#ff21b04b</color>

@@ -1,0 +1,45 @@
+td {
+    width: 120px;
+    height: 50px;
+}
+#container{
+  text-align: center;   
+}
+canvas{
+
+    align-content: center;
+}
+table{
+  margin: auto;   
+    
+}
+#td1{
+    
+ background-color: #c2c2c4;
+    
+}
+#td2{
+    
+ background-color: #7f83a1;
+    
+}
+#td3{
+    
+ background-color: #f78934;
+    
+}
+#td4{
+    
+ background-color: #d33dfc;
+    
+}
+#td5{
+    
+ background-color: #80c1ff;
+    
+}
+#td6{
+    
+ background-color: #1db84e;
+    
+}
