@@ -27,12 +27,34 @@
     <item name="l_directory" type="id"/>
     <item name="l_blogs" type="id"/>
     <item name="l_clubs" type="id"/>
+     <!-- Maps id's -->
+    <item name="maps_up_button" type="id"/>
+    <item name="maps_down_button" type="id"/>
+     <item name="maps_main_button" type="id"/>
+      <item name="maps_search_button" type="id"/>
+      <item name="maps_edit_text" type="id"/>
+       <item name="image_view_id" type="id"/>
+       <item name="image_sub_view_id" type="id"/>
+       
+        <item name="web_id" type="id"/>
+         <item name="layout_web_id" type="id"/>
     
     <!-- Colors -->
      <color name="button_color_bg"> #1569C7</color>
      <color name="button_color_press">#151B54</color>
      <color name="button_color_press_grad">#2B3856</color>
      <color name="txt_color">#2345AC</color>
+      <color name="blue_gray_color">#98AFC7</color>
+      <color name="light_blue_color">#ADD8E6</color>
+      <!-- Mask image colors -->
+     <color name="corpus_1_color">#ff870014</color>
+     <color name="corpus_2_color">#ff21b04b</color>
+     <color name="corpus_3_color">#ffa248a3</color>
+     <color name="corpus_4_color">#ff00a1e7</color>
+     <color name="corpus_5_color">#fffef100</color>
+     <color name="corpus_6_color">#fffe7e26</color>
+     <color name="corpus_7_color">#ff7e7e7e</color>
+     <color name="corpus_10_color">#ff000000</color>
     
     <!-- Button Names -->
     <string name="schedule">Расписание</string>
@@ -47,4 +69,13 @@
     <string name="directory">Справочник</string>
     <string name="blogs">Блоги</string>
     <string name="clubs">Клубы</string>
+     <!-- Map Names -->
+     <string name="maps_main_text">Карта университета:</string>
+     <string name="map_button_search_text">Поиск</string>
+     <string name="search_hint">Поиск аудитории</string>
+     <!-- Map Names (navigation buttons) -->
+     <string name="map_button_up_text">На этаж вверх</string>
+     <string name="map_button_down_text">На этаж вниз</string>
+     <string name="map_button_main_text">Общая карта</string>
+    
 </resources>

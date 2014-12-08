@@ -27,6 +27,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		 
 		 ImageButton btn_webcams = (ImageButton) findViewById(R.id.webcams);
 		 btn_webcams.setOnClickListener(this);
+		 
+		 ImageButton mapBtn = (ImageButton) findViewById(R.id.maps);
+		 mapBtn.setOnClickListener(this);
+		 ImageButton btn = (ImageButton) findViewById(R.id.schedule);
+
+		 btn.setOnClickListener(this);
+
 		 }
 	@Override
 	public void onClick(View v) {
@@ -49,6 +56,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	    	Intent intent_webcams = new Intent(this, webcams.class);
 	        startActivity(intent_webcams);
 	        break;
+	    case R.id.maps:
+	    	Intent mapIntent = new Intent(this, Map.class);
+	        startActivity(mapIntent);
+	    	break;
+
 	    default: 	      break;
 	    }
 	  }

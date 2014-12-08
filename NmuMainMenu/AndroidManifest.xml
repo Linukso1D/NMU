@@ -29,10 +29,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="rasp"></activity>
-        <activity android:name="news"></activity>
-        <activity android:name="teachers"></activity>
-        <activity android:name="webcams"></activity>
+        <activity android:name="rasp"
+             android:theme="@android:style/Theme.Black.NoTitleBar"
+             android:windowSoftInputMode="stateHidden"
+             >
+            </activity>
+        <activity android:name="news"
+             android:theme="@android:style/Theme.Black.NoTitleBar"
+             android:windowSoftInputMode="stateHidden"
+             >
+             </activity>
+        <activity android:name="teachers"  
+             android:theme="@android:style/Theme.Black.NoTitleBar"
+             android:windowSoftInputMode="stateHidden"
+             >
+            
+        </activity>
+        <activity android:name="webcams"
+             android:theme="@android:style/Theme.Black.NoTitleBar"
+             android:windowSoftInputMode="stateHidden">
+            
+        </activity>
+        <activity
+             android:name=".Map"
+             android:theme="@android:style/Theme.Black.NoTitleBar"
+             android:windowSoftInputMode="stateHidden"
+             >  
+         </activity>
+        
     </application>
 
 </manifest>
