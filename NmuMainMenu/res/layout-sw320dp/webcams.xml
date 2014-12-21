@@ -49,12 +49,12 @@
             android:text="Закрыть"
             android:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/cam_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp" />
+<ImageView
+android:id="@+id/cam_image"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:layout_gravity="center"
+android:layout_marginTop="5dp" />
 
     </LinearLayout>
 

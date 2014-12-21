@@ -44,6 +44,8 @@
              android:windowSoftInputMode="stateHidden"
              >
             
+ 
+            
         </activity>
         <activity android:name="webcams"
              android:theme="@android:style/Theme.Light.NoTitleBar"
