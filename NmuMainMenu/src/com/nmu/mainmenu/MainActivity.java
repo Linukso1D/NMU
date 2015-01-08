@@ -28,6 +28,22 @@ public class MainActivity extends Activity implements OnClickListener {
 		 ImageButton btn_webcams = (ImageButton) findViewById(R.id.webcams);
 		 btn_webcams.setOnClickListener(this);
 		 
+		 ImageButton btn_freepc = (ImageButton) findViewById(R.id.freepc);
+		 btn_freepc.setOnClickListener(this);
+		 
+		 ImageButton btn_calendar = (ImageButton) findViewById(R.id.calendar);
+		 btn_calendar.setOnClickListener(this);
+		 
+		 ImageButton btn_directory = (ImageButton) findViewById(R.id.directory);
+		 btn_directory.setOnClickListener(this);
+		 
+		 ImageButton btn_blogs = (ImageButton) findViewById(R.id.blogs);
+		 btn_blogs.setOnClickListener(this);
+		 
+		 ImageButton btn_clubs = (ImageButton) findViewById(R.id.clubs);
+		 btn_clubs.setOnClickListener(this);
+
+		 
 		 ImageButton mapBtn = (ImageButton) findViewById(R.id.maps);
 		 mapBtn.setOnClickListener(this);
 		 ImageButton btn = (ImageButton) findViewById(R.id.schedule);
@@ -60,8 +76,30 @@ public class MainActivity extends Activity implements OnClickListener {
 	    	Intent mapIntent = new Intent(this, Map.class);
 	        startActivity(mapIntent);
 	    	break;
+	    case R.id.freepc:
+	    	Intent freepc_Intent = new Intent(this, freepc.class);
+	        startActivity(freepc_Intent);
+	    	break;
+	    case R.id.calendar:
+	    	Intent calendar_Intent = new Intent(this, calendar.class);
+	        startActivity(calendar_Intent);
+	    	break;
+	    case R.id.directory:
+	    	Intent directory_Intent = new Intent(this, teachers.class);
+	        startActivity(directory_Intent);
+	    	break;
+	    case R.id.blogs:
+	    	Intent blogs_Intent = new Intent(this, blogs.class);
+	        startActivity(blogs_Intent);
+	    	break;
+	    	
+	    case R.id.clubs:
+	    	Intent clubs_Intent = new Intent(this, clubs.class);
+	        startActivity(clubs_Intent);
+	    	break;
 
 	    default: 	      break;
+
 	    }
 	  }
 }

@@ -43,9 +43,7 @@
              android:theme="@android:style/Theme.Light.NoTitleBar"
              android:windowSoftInputMode="stateHidden"
              >
-            
- 
-            
+                   
         </activity>
         <activity android:name="webcams"
              android:theme="@android:style/Theme.Light.NoTitleBar"
@@ -58,7 +56,23 @@
              android:windowSoftInputMode="stateHidden"
              >  
          </activity>
-        
+        <activity android:name=".freepc" 
+            android:theme="@android:style/Theme.Light.NoTitleBar" 
+            android:windowSoftInputMode="stateHidden"> 
+            </activity>
+            
+        <activity android:name="calendar"
+             android:theme="@android:style/Theme.Light.NoTitleBar" 
+             android:windowSoftInputMode="stateHidden"> 
+             </activity>
+             <activity android:name="blogs" 
+                 android:theme="@android:style/Theme.Light.NoTitleBar" 
+                 android:windowSoftInputMode="stateHidden"> 
+                 </activity>
+                 <activity android:name="clubs"
+                      android:theme="@android:style/Theme.Light.NoTitleBar" 
+                      android:windowSoftInputMode="stateHidden"> 
+                      </activity>
     </application>
 
 </manifest>
