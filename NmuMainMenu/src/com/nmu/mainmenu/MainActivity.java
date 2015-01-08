@@ -21,6 +21,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		 ImageButton btn_news = (ImageButton) findViewById(R.id.news);
 		 btn_news.setOnClickListener(this);
+		 ImageButton btn_library = (ImageButton) findViewById(R.id.library);
+		 btn_news.setOnClickListener(this);
 		 
 		 ImageButton btn_teachers = (ImageButton) findViewById(R.id.teachers);
 		 btn_teachers.setOnClickListener(this);
@@ -63,6 +65,10 @@ public class MainActivity extends Activity implements OnClickListener {
 	    case R.id.news:
 	    	Intent intent_news = new Intent(this, news.class);
 	        startActivity(intent_news);
+	        break;
+	    case R.id.library:
+	    	Intent intent_library = new Intent(this, news.class);
+	        startActivity(intent_library);
 	        break;
 	    case R.id.teachers:
 	    	Intent intent_teachers = new Intent(this, teachers.class);

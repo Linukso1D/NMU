@@ -50,6 +50,11 @@
              android:windowSoftInputMode="stateHidden">
             
         </activity>
+                <activity android:name="library"
+             android:theme="@android:style/Theme.Light.NoTitleBar"
+             android:windowSoftInputMode="stateHidden">
+            
+        </activity>
         <activity
              android:name=".Map"
              android:theme="@android:style/Theme.Light.NoTitleBar"

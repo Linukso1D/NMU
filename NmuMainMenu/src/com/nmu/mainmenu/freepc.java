@@ -3,6 +3,8 @@ package com.nmu.mainmenu;
 import java.io.File;
 import java.io.IOException;
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 import org.jsoup.Jsoup;
@@ -17,8 +19,14 @@ public class freepc extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.freepc);
-	/*TextView tv_1 = (TextView)findViewById(R.id.textView3);
+	TextView tv_1 = (TextView)findViewById(R.id.textView3);
 	
+
+	
+
+
+	
+	/*
 	File input = new File("//sdcard/temp/input.html");
 	
 	
