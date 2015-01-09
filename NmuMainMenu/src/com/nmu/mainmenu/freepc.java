@@ -6,41 +6,39 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 import org.jsoup.Jsoup;
-import org.jsoup.helper.Validate;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public class freepc extends Activity {
-	Document doc;
+
 	
 	protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
+	TextView tv = (TextView) findViewById(R.id.textView1);
 	setContentView(R.layout.freepc);
-	TextView tv_1 = (TextView)findViewById(R.id.textView3);
+
+	String html = "<html><head><title>Коты учатся кодить</title>"
+			+ "<body><p>Коты умеют <del>ш</del>кодить.<br> Они великие программисты." +
+					"<p>А еще они умеют мяукать.</p>" +
+					"<a href='http://developer.alexanderklimov.ru'>Подробности здесь</a>" +
+					"</body></html>";
+		
+		Document doc = Jsoup.parse(html);
+		//doc.html()
+		tv.setText("lol"); 
+	
+	
+	//Document doc = Jsoup.parse("http://m.nmu.org.ua/#freecomp");
+	//tv_1.setText(doc.html());
+	//Element loginform = doc.getElementById("freecomp");
 	
 
-	
 
-
-	
-	/*
-	File input = new File("//sdcard/temp/input.html");
-	
-	
-		Document doc = null;
-		try {
-			doc = Jsoup.parse(input, "UTF-8", "http://m.nmu.org.ua/#freecomp");
-		} catch (IOException e) {
-			// TODO Автоматически созданный блок catch
-			e.printStackTrace();
-		}
-	
-	
-	@SuppressWarnings("unused")
-	Element content = doc.getElementById("freecomp");//<- вот на этой строчке вылетает
+//	Element content = doc.getElementById("freecomp");//<- вот на этой строчке вылетает
 	//Elements links = content.getElementsByTag("br");
 	
 	/*
