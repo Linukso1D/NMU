@@ -1,19 +1,11 @@
 package rembo.network.urss;
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.*;
-import java.util.*;
-import java.text.*;
-import java.net.*;
-import java.io.*;
-import javax.xml.parsers.*;
-import org.w3c.dom.*;
+import java.text.SimpleDateFormat;
 
 import com.nmu.mainmenu.R;
 
-
-
-import android.view.*;
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
 public class RssItemDisplayer extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {

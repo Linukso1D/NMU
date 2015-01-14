@@ -13,7 +13,7 @@ public class library extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.library);
 		
-		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.ru/maps/dir//48.4556691,35.0618105/@48.4557645,35.0619213,19z/data=!4m2!4m1!3e1"));
+		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.ru/maps/dir//48.4556691,35.0618105/@48.4553096,34.9140874,11z/data=!3m1!4b1!4m2!4m1!3e0"));
 		startActivity(browserIntent);
 		
 	}
