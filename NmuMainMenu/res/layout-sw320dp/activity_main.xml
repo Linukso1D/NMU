@@ -9,6 +9,7 @@
         android:id="@id/main_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:background="@color/button_color_press_grad"
         android:gravity="center"
         android:paddingTop="@dimen/text_view_padding_t_b"
@@ -16,17 +17,8 @@
         android:textColor="#ffffff"
         android:textSize="@dimen/text_size" />
 
-    <TextView
-        android:id="@id/main_text"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/button_color_press_grad"
-        android:gravity="center"
-        android:paddingBottom="@dimen/text_view_padding_t_b"
-        android:text="Числитель(LAYOUT-sw320dp), 37 тиждень"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/text_size" />
 
+    
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

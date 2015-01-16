@@ -1,15 +1,77 @@
 package com.nmu.mainmenu;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import rembo.network.urss.RSSactivity;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
 
+	public String GetDay(int now) {
+		now -= 1;
+		String day[] = { " воскресенье ", " понедельник ", " вторник ",
+				" среда ", " четверг ", " п€тница ", " суббота " };
+		return day[now];
+
+	}
+	
+	private int getScreenOrientation(){    
+		if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+		    return 1;
+		else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+			return 2;
+		else
+			return 0;
+	}
+	public String Week(int now) {
+		
+		if(now%2==1) {return " «наменатель (второй) ";}
+		else {return " „ислитель (первый) ";}
+
+	}
+
+	public String Lent(int now) {
+		if (now > 800 && now < 920) {
+			return " 1-€ пара ";
+		}
+		if (now > 935 && now < 1055) {
+			return " 2-€ пара ";
+		}
+		if (now > 1120 && now < 1240) {
+			return " 3-€ пара ";
+		}
+		if (now > 1255 && now < 1415) {
+			return " 4-€ пара ";
+		}
+		if (now > 1430 && now < 1550) {
+			return " 5-€ пара ";
+		}
+		if (now > 1605 && now < 1725) {
+			return " 6-€ пара ";
+		}
+		if (now > 1735 && now < 1855) {
+			return " 7-€ пара ";
+		}
+		if (now > 1905 && now < 2025) {
+			return " 8-€ пара ";
+		}
+		if (now < 740 && now > 2045) {
+			return "";
+		}
+		return " ѕеремена ";
+
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +109,49 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		ImageButton mapBtn = (ImageButton) findViewById(R.id.maps);
 		mapBtn.setOnClickListener(this);
+		
+		
+		
+		TextView ShowInfText = (TextView) findViewById(R.id.main_text);
+
+		// функц main_text
+		// инициализаци€-----
+		SimpleDateFormat NumberMonth = null;
+		SimpleDateFormat Time = null;
+		SimpleDateFormat Time2 = null;
+		Calendar newCal = new GregorianCalendar();
+		Date d = new Date();
+		// ----------------------------------
+		ShowInfText.setText(" d= " + d.toString());
+		Date currentDate = new Date();
+		// число и мес€ц
+
+		NumberMonth = new SimpleDateFormat("dd MMMM ");
+		Time = new SimpleDateFormat("HH:mm");
+		Time2 = new SimpleDateFormat("HH mm");
+		// день недели
+		newCal.setTime(newCal.getTime());
+		int day = newCal.get(Calendar.DAY_OF_WEEK);
+		int week =  newCal.get(Calendar.WEEK_OF_YEAR);
+		int parsetime = (Integer.parseInt(Time2.format(currentDate).replaceAll(
+				" ", "")));
+
+		int week2=17+week;
+		if(week2>35){week2-=(35+17);}
+		
+		//WEEK_OF_YEAR
+		 
+
+		//out
+		if(getScreenOrientation()==1){
+		 ShowInfText.setText(Time.format(currentDate)+","+Lent(parsetime)+", "+NumberMonth.format(currentDate)+","
+				 +GetDay(day)+"\n"+Week(week)+", "+week2+"-€ недел€ "+"(320dp)"	 );
+		}
+		else
+		{
+			ShowInfText.setText(Time.format(currentDate)+","+Lent(parsetime)+", "+NumberMonth.format(currentDate)+","
+					 +GetDay(day)+Week(week)+", "+week2+"-€ недел€ "+"(320dp)"	 );
+		}
 
 	}
 
