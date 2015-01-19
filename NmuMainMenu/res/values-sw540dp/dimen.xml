@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="text_size">18sp</dimen>
+    <dimen name="text_button_size">18sp</dimen>
+    <dimen name="text_view_padding_t_b">15dp</dimen>
+    <dimen name="row1_padding_top">10dp</dimen>
+    
+    <!-- Отступы сверху и снизу от заглавного текста -->
+    <dimen name="map_padding_top_port">15dp</dimen>
+    <dimen name="map_padding_top_land">5dp</dimen>
+    <!-- Размер текста на кнопках -->
+    <dimen name="map_button_text_size">16sp</dimen>
+    <!-- Размер заглавного текста и текста в EditText -->
+    <dimen name="map_main_text_size">24sp</dimen>
+    <dimen name="map_padding_top_port_image">50dp</dimen>
+    <!-- Высота EditText -->
+    <dimen name="map_input_height">53dp</dimen>
+    <!-- Button style -->
+    <dimen name="button_padding_top_bottom">10dp</dimen>
+    <dimen name="button_padding_left_right">5dp</dimen>
+    <!-- Ширина и высота карты-схемы -->
+    <dimen name="web_view_width">460dp</dimen>
+    <dimen name="web_view_height">470dp</dimen>
+
+
+    
+</resources>

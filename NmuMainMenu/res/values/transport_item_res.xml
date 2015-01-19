@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+     <item name="list_frag_id" type="id"/>
+    <!-- Идентификатор списка маршрутов -->
+     <item name="list_routes" type="id"/>
+     <!-- Идентификатор view pager -->
+     <item name="tran_view_pager" type="id"/>
+      <!-- Идентификаторы обьектов buttons -->
+      <item name="tran_item_button_bus" type="id"/>
+      <item name="tran_item_button_elbus" type="id"/>
+      <item name="tran_item_button_tram" type="id"/>
+       <!-- Идентификаторы list view item -->
+      <item name="tran_item_of_list_view" type="id"/>
+      <!-- Текст кнопок -->
+      <string name="tran_item_bus_btn_text">Маршрутное\nтакси</string>
+      <string name="tran_item_elbus_btn_text">Троллейбус</string>
+      <string name="tran_item_tram_btn_text">Трамвай</string>
+      
+       <string name="tran_item_title_text_bus">Маршрутное\nтакси:</string>
+        <string name="tran_item_title_text_elbus">Троллейбус:</string>
+         <string name="tran_item_title_text_tram">Трамвай:</string>
+         
+         <string name="tran_marker_title_main">ДВНЗ\nНациональный Горный Университет</string>
+         <string name="tran_marker_title_sub">НГУ</string>
+         
+     <item name="tran_item_list_frag" type="id"/>
+      <item name="tran_item_map_frag" type="id"/>
+
+</resources>

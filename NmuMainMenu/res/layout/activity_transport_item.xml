@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginTop="@dimen/padding_maintext"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/tr_item_wraper_padding"
+            android:paddingRight="@dimen/tr_item_wraper_padding"
+            android:paddingTop="@dimen/tr_item_wraper_padding"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@id/transport_title_id"
+                android:layout_width="@dimen/maintext_width"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:paddingLeft="@dimen/padding_maintext"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/maintext_size" 
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@id/tran_item_button_bus"
+                android:layout_width="@dimen/tr_item_button_width"
+                android:layout_height="@dimen/tr_item_button_height"
+                android:layout_marginLeft="@dimen/tr_item_margin_button_left"
+                android:background="@drawable/tr_item_button_style"
+                android:drawableLeft="@drawable/bus_m"
+                android:padding="@dimen/tr_item_padding_button_left_right"
+                android:text="@string/tran_item_bus_btn_text"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/tr_item_button_text_size" />
+
+            <Button
+                android:id="@id/tran_item_button_elbus"
+                android:layout_width="@dimen/tr_item_button_width"
+                android:layout_height="@dimen/tr_item_button_height"
+                android:layout_marginLeft="@dimen/tr_item_margin_button_left"
+                android:background="@drawable/tr_item_button_style"
+                android:drawableTop="@drawable/elbus_m"
+                android:padding="@dimen/tr_item_padding_button_left_right"
+                android:text="@string/tran_item_elbus_btn_text"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/tr_item_button_text_size" />
+
+            <Button
+                android:id="@id/tran_item_button_tram"
+                android:layout_width="@dimen/tr_item_button_width"
+                android:layout_height="@dimen/tr_item_button_height"
+                android:layout_marginLeft="@dimen/tr_item_margin_button_left"
+                android:background="@drawable/tr_item_button_style"
+                android:drawableTop="@drawable/tram_m"
+                android:padding="@dimen/tr_item_padding_button_left_right"
+                android:text="@string/tran_item_tram_btn_text"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/tr_item_button_text_size" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/tr_view_h"
+            android:background="@color/transport_button_clck_bg_color" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/tran_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:paddingTop="@dimen/tr_item_view_pager_padding_top" />
+
+</LinearLayout>

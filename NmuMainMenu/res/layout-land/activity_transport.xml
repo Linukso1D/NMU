@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/transport_main_bg_color"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@id/transport_title_id"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="5dp"
+            android:text="@string/transport_title_text"
+            android:textColor="@color/transport_title_text_color"
+            android:textSize="@dimen/tr_main_text_size" />
+
+        <View
+            android:id="@id/transport_line_id"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/tr_view_h"
+            android:background="@color/transport_button_clck_bg_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:baselineAligned="false"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <LinearLayout
+            android:id="@id/transport_bus_layout_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/tr_layout_wrapper_padding_top" >
+
+            <ImageView
+                android:id="@id/transport_bus_image_id"
+                android:layout_width="@dimen/tr_image_w_h"
+                android:layout_height="@dimen/tr_image_w_h"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:contentDescription="@string/transport_bus_btn_text"
+                android:gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bus" />
+
+            <Button
+                android:id="@id/transport_bus_button_id"
+                android:layout_width="@dimen/tr_button_width"
+                android:layout_height="@dimen/tr_button_height"
+                android:background="@drawable/tr_main_button_style"
+                android:text="@string/transport_bus_btn_text"
+                android:textColor="@color/transport_main_bg_color"
+                android:textSize="@dimen/tr_button_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/transport_elbus_layout_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/tr_layout_wrapper_padding_top" >
+
+            <ImageView
+                android:id="@id/transport_elbus_image_id"
+                android:contentDescription="@string/transport_elbus_btn_text"
+                android:layout_width="@dimen/tr_image_w_h"
+                android:layout_height="@dimen/tr_image_w_h"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/elbus" />
+
+            <Button
+                android:id="@id/transport_elbus_button_id"
+                android:layout_width="@dimen/tr_button_width"
+                android:layout_height="@dimen/tr_button_height"
+                android:background="@drawable/tr_main_button_style"
+                android:text="@string/transport_elbus_btn_text"
+                android:textColor="@color/transport_main_bg_color"
+                android:textSize="@dimen/tr_button_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/transport_tram_layout_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/tr_layout_wrapper_padding_top" >
+
+            <ImageView
+                android:contentDescription="@string/transport_tram_btn_text"
+                android:id="@id/transport_tram_image_id"
+                android:layout_width="@dimen/tr_image_w_h"
+                android:layout_height="@dimen/tr_image_w_h"
+                android:adjustViewBounds="true"
+                android:clickable="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tram" />
+
+            <Button
+                android:id="@id/transport_tram_button_id"
+                android:layout_width="@dimen/tr_button_width"
+                android:layout_height="@dimen/tr_button_height"
+                android:background="@drawable/tr_main_button_style"
+                android:text="@string/transport_tram_btn_text"
+                android:textColor="@color/transport_main_bg_color"
+                android:textSize="@dimen/tr_button_text_size"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -8,11 +8,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TabHost;
-import android.widget.TabWidget;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.util.Log;
-import android.widget.TabHost.OnTabChangeListener;
 
 
 

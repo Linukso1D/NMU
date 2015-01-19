@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/tran_item_of_list_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="@dimen/tr_list_item_padding"
+     android:background="@drawable/tr_list_item_style"
+    android:textColor="@android:color/black"
+    android:textSize="@dimen/tr_list_item_text_size" >
+</TextView>

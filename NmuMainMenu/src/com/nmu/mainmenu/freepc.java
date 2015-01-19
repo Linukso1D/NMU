@@ -1,17 +1,11 @@
 package com.nmu.mainmenu;
 
-import java.io.File;
-import java.io.IOException;
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.Button;
-import android.widget.TextView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
 
 public class freepc extends Activity {
 

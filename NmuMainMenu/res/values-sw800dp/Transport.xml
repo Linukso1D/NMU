@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Размер заглавного текста текста -->
+    <dimen name="tr_main_text_size">65sp</dimen>
+    <!-- Высота разделителя под текстом -->
+    <dimen name="tr_view_h">4dp</dimen>
+    <!-- Верхние отступы для слоев - оберток изображений -->
+    <dimen name="tr_layout_wrapper_padding_top">35dp</dimen>
+    <!-- Ширина и высота изображений -->
+    <dimen name="tr_image_w_h">250dp</dimen>
+    <!-- Ширина кнопки -->
+    <dimen name="tr_button_width">250dp</dimen>
+    <!-- Высота кнопки -->
+    <dimen name="tr_button_height">90dp</dimen>
+    <!-- Размер текста кнопки -->
+    <dimen name="tr_button_text_size">40sp</dimen>
+    <!-- Радиус закругления кнопки -->
+    <dimen name="tr_button_rad">8dp</dimen>
+    
+</resources>

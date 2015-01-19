@@ -1,11 +1,6 @@
 package rembo.network.urss;
 
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-
-import com.nmu.mainmenu.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,6 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.nmu.mainmenu.R;
 
 public class RSSactivity extends Activity {
 

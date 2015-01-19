@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import rembo.network.urss.RSSactivity;
+import transport.Transport;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -76,7 +77,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		ImageButton transportBtn = (ImageButton) findViewById(R.id.transport);
+		transportBtn.setOnClickListener(this);
 		ImageButton btn_rasp = (ImageButton) findViewById(R.id.schedule);
 		btn_rasp.setOnClickListener(this);
 
@@ -163,6 +165,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			Intent intent_rasp = new Intent(this, rasp.class);
 			startActivity(intent_rasp);
 			break;
+			
 
 		case R.id.news:
 			Intent intent_news = new Intent(this, RSSactivity.class);
@@ -205,6 +208,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			Intent clubs_Intent = new Intent(this, clubs.class);
 			startActivity(clubs_Intent);
 			break;
+		case R.id.transport:
+			Intent transportIntent = new Intent(this, Transport.class);
+			startActivity(transportIntent);
+			break;
+
 
 		default:
 			break;

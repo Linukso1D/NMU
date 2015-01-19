@@ -1,18 +1,18 @@
 package com.nmu.mainmenu;
 
 import java.net.URL;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import java.util.TimerTask;
-import java.util.Timer;
 
 	
 public class webcams extends Activity implements OnClickListener{

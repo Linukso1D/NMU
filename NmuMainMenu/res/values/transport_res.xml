@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- #Id resources -->
+    <item name="transport_line_id" type="id"/>
+    <!-- ##Image id's -->
+    
+    <item name="transport_bus_image_id" type="id"/>
+    <item name="transport_elbus_image_id" type="id"/>
+    <item name="transport_tram_image_id" type="id"/>
+    <!-- ##Button id's -->
+    <item name="transport_bus_button_id" type="id"/>
+    <item name="transport_elbus_button_id" type="id"/>
+    <item name="transport_tram_button_id" type="id"/>
+    <!-- ##TextView id's -->
+    <item name="transport_title_id" type="id"/>
+     <!-- ##LinearLayout id's -->
+    <item name="transport_bus_layout_id" type="id"/>
+    <item name="transport_elbus_layout_id" type="id"/>
+    <item name="transport_tram_layout_id" type="id"/>
+    <!-- #Colors -->
+    <color name="transport_main_bg_color">#ffffff</color>
+    <color name="transport_title_text_color">#000000</color>
+    <!-- ##Button colors -->
+    <color name="transport_button_bg_color">#0072BC</color>
+    <color name="transport_button_clck_bg_color">#ff00a1e7</color>
+     <!-- Цвет заливки полигона -->
+    <color name="tr_plygon_fill_color">#7F00FF00</color>
+     <!-- Цвет обводки полигона -->
+    <color name="tr_plygon_stroke_color">#3F0000FF</color>
+    <!-- #String resources -->
+    
+    <!-- ##Title strings -->
+    <string name="transport_title_text">Транспорт:</string>
+    <!-- ##Button strings -->
+    <string name="transport_bus_btn_text">Автобус</string>
+    <string name="transport_elbus_btn_text">Троллейбус</string>
+    <string name="transport_tram_btn_text">Трамвай</string>
+<!-- Transport activity sizes  -->
+ <dimen name="tr_main_text_size">40sp</dimen>
+ <dimen name="tr_layout_wrapper_padding_top">15dp</dimen>
+ <dimen name="tr_image_w_h">165dp</dimen>
+   <!-- Высота разделителя под текстом  -->
+ <dimen name="tr_view_h">2dp</dimen>
+ <!-- Hастройки для кнопок  -->
+  <!-- Ширина кнопки  -->
+ <dimen name="tr_button_width">165dp</dimen>
+   <!-- Высота кнопки  -->
+  <dimen name="tr_button_height">52dp</dimen>
+    <!-- Размер текста кнопки  -->
+    <dimen name="tr_button_text_size">19sp</dimen>
+      <!-- Радиус закругления кнопки  -->
+      <dimen name="tr_button_rad">7dp</dimen>
+    
+</resources>

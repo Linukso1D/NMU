@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Цвета кнопок меню transport item  -->
+    <color name="tr_item_button_color">#032857</color>
+    <color name="tr_item_button_pressed_color">#0072BC</color>
+    <color name="tr_list_item_selected_color">#ADD8E6</color>
+     <color name="tr_list_item_pressed_color">#3090C7</color>
+</resources>

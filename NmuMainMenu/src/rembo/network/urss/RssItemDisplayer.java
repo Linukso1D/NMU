@@ -1,11 +1,11 @@
 package rembo.network.urss;
 import java.text.SimpleDateFormat;
 
-import com.nmu.mainmenu.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.nmu.mainmenu.R;
 public class RssItemDisplayer extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
