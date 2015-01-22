@@ -196,7 +196,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(calendar_Intent);
 			break;
 		case R.id.directory:
-			Intent directory_Intent = new Intent(this, teachers.class);
+			Intent directory_Intent = new Intent(this, navi.class);
 			startActivity(directory_Intent);
 			break;
 		case R.id.blogs:

@@ -3,6 +3,7 @@ package rembo.network.urss;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +15,9 @@ import android.widget.ListView;
 import com.nmu.mainmenu.R;
 
 public class RSSactivity extends Activity {
+	  ProgressDialog pd;
 
+	
 	public static RssItem selectedRssItem = null;
 	String feedUrl = "http://www.nmu.org.ua/ua/content/news/?rss=y";
 	ListView rssListView = null;
@@ -23,9 +26,18 @@ public class RSSactivity extends Activity {
 
 	/** Called when the activity is first created. */
 	@Override
+ 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.rss_s);
+		
+	      pd = new ProgressDialog(this);
+	      pd.setTitle("Загрузка новостей ");
+	      pd.setMessage("Обработка данных");
+	      pd.show();
+	      pd.setIndeterminate(true);
+	     
+		
 		Log.i("Информация", "RSSactivity коннект");
 		// get textview from our layout.xml
 
@@ -34,10 +46,12 @@ public class RSSactivity extends Activity {
 		// define the action that will be executed when the button is clicked.
 
 		// get the listview from layout.xml
-		rssListView = (ListView) findViewById(R.id.rssListView);
+	rssListView = (ListView) findViewById(R.id.rssListView);
 		// here we specify what to execute when individual list items clicked
-		rssListView
-				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		pd.setIndeterminate(false);
+	
+		
+		rssListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 					// @Override
 					public void onItemClick(AdapterView<?> av, View view,
@@ -68,9 +82,9 @@ public class RSSactivity extends Activity {
 			
 				rssItems.clear();
 				rssItems.addAll(newItems);
-				
-				aa.notifyDataSetChanged();
 
+				aa.notifyDataSetChanged();
+				pd.dismiss();
 			}
 		});
 	}

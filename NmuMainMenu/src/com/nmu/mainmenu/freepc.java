@@ -5,6 +5,7 @@ import org.jsoup.nodes.Document;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ public class freepc extends Activity {
 	WebView browser;
 	Document doc;
 	int pos;
+	ProgressDialog pd;
 
 	@SuppressLint("JavascriptInterface")
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,11 @@ public class freepc extends Activity {
 		setContentView(R.layout.freepc);
 		tv = (TextView) findViewById(R.id.tv);
 		browser = (WebView) findViewById(R.id.wv);
-	
+		pd = new ProgressDialog(this);
+		pd.setTitle("Загрузка данных ");
+		pd.setMessage("Подождите");
+		pd.show();
+		pd.setIndeterminate(true);
 		class MyJavaScriptInterface {
 			@SuppressWarnings("unused")
 			public void processHTML(String html) {
@@ -52,18 +58,19 @@ public class freepc extends Activity {
 			}
 		});
 		browser.loadUrl("http://m.nmu.org.ua/#freecomp");
-			}
+	}
+
 	public class SetText extends AsyncTask<String, Void, String> {
 
 		@Override
 		protected String doInBackground(String... links) {
-			
 			return links[0];
 		}
 
 		@Override
 		protected void onPostExecute(String result) {
 			tv.setText(result);
+			pd.dismiss();
 		}
 
 	}

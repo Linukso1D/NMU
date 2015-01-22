@@ -57,6 +57,11 @@
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:windowSoftInputMode="stateHidden" >
         </activity>
+         <activity
+            android:name="navi"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
         <activity
             android:name=".Map"
             android:theme="@android:style/Theme.Light.NoTitleBar"
