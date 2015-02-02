@@ -147,12 +147,12 @@ public class MainActivity extends Activity implements OnClickListener {
 		//out
 		if(getScreenOrientation()==1){
 		 ShowInfText.setText(Time.format(currentDate)+","+Lent(parsetime)+", "+NumberMonth.format(currentDate)+","
-				 +GetDay(day)+"\n"+Week(week)+", "+week2+"-я неделя "+"(320dp)"	 );
+				 +GetDay(day)+"\n"+Week(week)+", "+week2+"-я неделя "+""	 );
 		}
 		else
 		{
 			ShowInfText.setText(Time.format(currentDate)+","+Lent(parsetime)+", "+NumberMonth.format(currentDate)+","
-					 +GetDay(day)+Week(week)+", "+week2+"-я неделя "+"(320dp)"	 );
+					 +GetDay(day)+Week(week)+", "+week2+"-я неделя "+""	 );
 		}
 
 	}

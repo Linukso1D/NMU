@@ -85,6 +85,7 @@
         <activity
             android:name="clubs"
             android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity

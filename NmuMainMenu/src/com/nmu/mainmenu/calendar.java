@@ -19,7 +19,7 @@ public class calendar extends Activity{
 			// включаем поддержку JavaScript
 		    mWebView.getSettings().setJavaScriptEnabled(true);
 			// указываем страницу загрузки
-		    mWebView.loadUrl("https://www.google.com/calendar/embed?showTitle=0&showCalendars=0&height=600&wkst=2&bgcolor=%23FFFFFF&src=nmutempus%40gmail.com&color=%232952A3&ctz=Europe%2FKiev");
+		    mWebView.loadUrl("https://www.google.com/calendar/embed?showTitle=0&showPrint=0&wkst=2&showTz=0&showTabs=0&showCalendars=0&height=600&wkst=2&bgcolor=%23FFFFFF&src=nmutempus%40gmail.com&color=%232952A3&ctz=Europe%2FKiev");
 		    
 		    
 		    final ProgressDialog progressDialog = ProgressDialog.show(calendar.this, "", "Загрузка. Пожалуйста подождите...", true);
