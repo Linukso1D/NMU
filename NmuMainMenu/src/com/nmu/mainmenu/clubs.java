@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import android.annotation.SuppressLint;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.pm.ActivityInfo;
@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
@@ -25,8 +26,9 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.TextView;
+ 
 
-@SuppressLint("JavascriptInterface") public class clubs extends Activity {
+ public class clubs extends Activity {
 	WebView browser;
 	ListView ClubList;
 	TextView tv_description, tv_clubname;
@@ -57,7 +59,6 @@ import android.widget.TextView;
 					+ "углубить свои знания предмета и принести пользу современной науке.",
 			"Клуб знатоков" };
 
-	@SuppressLint("JavascriptInterface")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
@@ -73,13 +74,7 @@ import android.widget.TextView;
 		pd.setMessage("Подождите");
 		pd.show();
 		pd.setIndeterminate(true);
-		class MyJavaScriptInterface {
-			@SuppressWarnings("unused")
-			public void processHTML(String html) {
-				new select_clubs().execute(html);
-				global_html = html;
-			}
-		}
+
 		/* JavaScript must be enabled if you want it to work, obviously */
 		browser.getSettings().setJavaScriptEnabled(true);
 		/* Register a new JavaScript interface called HTMLOUT */
@@ -96,8 +91,6 @@ import android.widget.TextView;
 		ClubList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				//Log.d("Logs", "itemClick: position = " + position + ", id = "
-				//		+ id);
 				String temp = (String) ((TextView) view).getText();
 				position = club_names.indexOf(temp);
 				tv_clubname.setText(temp);
@@ -139,6 +132,13 @@ import android.widget.TextView;
 	    });
 		
 
+	}
+	class MyJavaScriptInterface {
+		@JavascriptInterface
+		public void processHTML(String html) {
+			new select_clubs().execute(html);
+			global_html = html;
+		}
 	}
 	public class select_clubs extends AsyncTask<String, Void, String[]> {
 		@Override

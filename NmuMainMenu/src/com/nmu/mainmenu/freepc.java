@@ -3,12 +3,14 @@ package com.nmu.mainmenu;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import android.webkit.JavascriptInterface;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
@@ -32,7 +34,7 @@ public class freepc extends Activity {
 		pd.show();
 		pd.setIndeterminate(true);
 		class MyJavaScriptInterface {
-			@SuppressWarnings("unused")
+			@JavascriptInterface
 			public void processHTML(String html) {
 				doc = Jsoup.parse(html);
 				StringBuffer sb = new StringBuffer(doc.text());
