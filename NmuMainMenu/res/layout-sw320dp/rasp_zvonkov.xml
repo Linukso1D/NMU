@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ПОНЕДІЛОК"
-                />
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tv_monday"
@@ -81,7 +81,8 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ВІВТОРОК" />
+                android:text="ВІВТОРОК"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tv_tuesday"
@@ -92,7 +93,8 @@
                 android:id="@+id/TextView01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="СЕРЕДА" />
+                android:text="СЕРЕДА"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tv_wednesday"
@@ -103,7 +105,8 @@
                 android:id="@+id/TextView02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ЧЕТВЕР" />
+                android:text="ЧЕТВЕР"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tv_thursday"
@@ -114,7 +117,8 @@
                 android:id="@+id/TextView04"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="П'ЯТНИЦЯ" />
+                android:text="П&apos;ЯТНИЦЯ"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/tv_friday"
@@ -163,6 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
+
             <TextView
                 android:id="@+id/monday"
                 android:layout_width="wrap_content"
@@ -174,7 +179,6 @@
                 android:id="@+id/tv_teach_monday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            
 
             <TextView
                 android:id="@+id/tuesday"
@@ -499,11 +503,5 @@
             </FrameLayout>
         </LinearLayout>
     </TabHost>
-
-<WebView
-    android:id="@+id/wv"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="gone" />
 
 </LinearLayout>

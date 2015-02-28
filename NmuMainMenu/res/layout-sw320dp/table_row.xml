@@ -1,0 +1,50 @@
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/col1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back"
+        android:maxLines="5"
+        android:minLines="1"
+        android:singleLine="false" />
+
+    <TextView
+        android:id="@+id/col2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back"
+        android:singleLine="false" />
+
+    <TextView
+        android:id="@+id/col3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back"
+        android:maxLines="4" />
+
+    <TextView
+        android:id="@+id/col4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back"
+        android:maxLines="4" />
+
+    <TextView
+        android:id="@+id/col5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back"
+        android:maxLines="4" />
+
+    <TextView
+        android:id="@+id/col6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/back"
+        android:maxLines="4" />
+
+</TableRow>

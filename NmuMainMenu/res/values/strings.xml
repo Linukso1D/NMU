@@ -2,6 +2,16 @@
 <resources>
 
     <string name="app_name">NMU</string>
-    <string name="count">Count</string>
+    <string name="menu_authors">Об авторах</string>
+    <string name="menu_notification">Настройки</string>
+    <string name="menu_exit">Выход</string>
+    <string name="sub_menu_notification">Уведомления</string>
+    <string name="sub_menu_languages">Языки</string>
+    <string name="sub_menu_themes">Темы</string>
+    <string name="show_notification">Показывать уведомления</string>
+    <string name="block_notification">Заблокироать уведомления</string>
+    <string name="language_ukr">Українська</string>
+    <string name="language_rus">Русский</string>
+    <string name="language_eng">English</string>
 
 </resources>

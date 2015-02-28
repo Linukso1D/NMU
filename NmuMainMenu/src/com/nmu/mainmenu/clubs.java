@@ -3,15 +3,26 @@ package com.nmu.mainmenu;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,131 +37,128 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnCloseListener;
 import android.widget.TextView;
- 
+import android.widget.Toast;
 
- public class clubs extends Activity {
-	WebView browser;
-	ListView ClubList;
+public class clubs extends Activity {
+	ListView Club_List;
 	TextView tv_description, tv_clubname;
 	SearchView search_field;
-	ArrayAdapter<String> adapter;
+	ArrayAdapter<String> club_adapter,description_adapter;
 	Document doc;
 	List<String> club_names = new ArrayList<String>();
+	List<String> descriptions = new ArrayList<String>();
 	Element el_next;
 	Elements els;
-	String global_html;
 	ProgressDialog pd;
-	String[] description = {
-			"Спортивная секция баскетбола",
-			"Спортивная секция борьбы",
-			"Спортивная секция велоспорта",
-			"КВН («Клуб весёлых и находчивых») — популярные"
-					+ "  юмористические игры, в которых команды различных "
-					+ "коллективов (учебных заведений, вузов, предприятий и т. д.) "
-					+ "соревнуются в юмористических ответах на заданные вопросы, "
-					+ "импровизациях на заданные темы, разыгрывании заранее заготовленных сцен и т. д.",
-			"Спортивный клуб гребли на байдарке",
-			"Спортивный клуб гребли на каноэ",
-			"Предлагаем всем любителям и профессионалам объединить свои усилия!",
-			"Спортивная секция легкой атлетики",
-			"Спортивная секция минифутбола",
-			"Спортивная секция настольного тенниса",
-			"Студенческий научный клуб кафедры ПЗКС предлагает всем студентам кафедры "
-					+ "углубить свои знания предмета и принести пользу современной науке.",
-			"Клуб знатоков" };
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.clubs);
-		browser = (WebView) findViewById(R.id.wv);
-		ClubList = (ListView) findViewById(R.id.ClubList);
+		
+		Club_List = (ListView) findViewById(R.id.ClubList);
 		tv_description = (TextView) findViewById(R.id.description);
 		tv_clubname = (TextView) findViewById(R.id.club_name);
 		search_field = (SearchView) findViewById(R.id.search_field);
-		pd = new ProgressDialog(this);
-		pd.setTitle("Загрузка данных ");
-		pd.setMessage("Подождите");
-		pd.show();
-		pd.setIndeterminate(true);
+		if (!isOnline()) {
+			Toast.makeText(getApplicationContext(),
+					"Нет соединения с интернетом!", Toast.LENGTH_LONG).show();
+			return;
+		} else {
+			pd = new ProgressDialog(this);
+			pd.setTitle("Загрузка данных ");
+			pd.setMessage("Подождите");
+			pd.show();
+			pd.setIndeterminate(true);
+			Club_List.requestFocus();
+			new select_clubs().execute("http://m.nmu.org.ua/ajax/getClubs.php");
+			Club_List.setOnItemClickListener(new OnItemClickListener() {
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					String temp = (String) ((TextView) view).getText();
+					position = club_names.indexOf(temp);
+					tv_clubname.setText(temp);
+					tv_description.setText("Описание:\n "
+							+ descriptions.get(position));
+				}
 
-		/* JavaScript must be enabled if you want it to work, obviously */
-		browser.getSettings().setJavaScriptEnabled(true);
-		/* Register a new JavaScript interface called HTMLOUT */
-		browser.addJavascriptInterface(new MyJavaScriptInterface(), "HTMLOUT");
-		/* WebViewClient must be set BEFORE calling loadUrl! */
-		browser.setWebViewClient(new WebViewClient() {
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				browser.loadUrl("javascript:window.HTMLOUT.processHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
-			}
-		});
-		browser.loadUrl("http://m.nmu.org.ua/#clubs");
-		ClubList.requestFocus();
-		ClubList.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				String temp = (String) ((TextView) view).getText();
-				position = club_names.indexOf(temp);
-				tv_clubname.setText(temp);
-				tv_description.setText("Описание:\n " + description[position]);
-			}
+			});
+			search_field
+					.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+						@Override
+						public boolean onQueryTextSubmit(String query) {
+							callSearch(query);
+							return true;
+						}
 
-		});
-		search_field.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                callSearch(query);
-                return true;
-            }
+						@Override
+						public boolean onQueryTextChange(String newText) {
+							callSearch(newText);
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                    callSearch(newText);
+							return true;
+						}
 
-                return true;
-            }
+						public void callSearch(String query) {
+							// Вызывается, когда пользователь изменяет текст в
+							// поле для поиска
+							club_adapter.getFilter().filter(search_field.getQuery());
+							if (query.contains("")) {
+								tv_clubname.setText("");
+								tv_description.setText("");
+							}
+						}
 
-            public void callSearch(String query) {
-				// Вызывается, когда пользователь изменяет текст в поле для
-				// поиска
-            	adapter.getFilter().filter(search_field.getQuery());
-                if (query.contains("")){
-    	        	tv_clubname.setText("");
-    				tv_description.setText("");	
-                }
-            }
-
-        });
-		search_field.setOnCloseListener(new OnCloseListener() {
-	        public boolean onClose() {
-	        	tv_clubname.setText("");
-				tv_description.setText("");
-	            return false;
-	        }
-	    });
-		
+					});
+			search_field.setOnCloseListener(new OnCloseListener() {
+				public boolean onClose() {
+					tv_clubname.setText("");
+					tv_description.setText("");
+					return false;
+				}
+			});
+		}
 
 	}
-	class MyJavaScriptInterface {
-		@JavascriptInterface
-		public void processHTML(String html) {
-			new select_clubs().execute(html);
-			global_html = html;
+
+	protected boolean isOnline() {
+		String cs = Context.CONNECTIVITY_SERVICE;
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(cs);
+		if (cm.getActiveNetworkInfo() == null) {
+			return false;
+		} else {
+			return true;
 		}
 	}
+
+
 	public class select_clubs extends AsyncTask<String, Void, String[]> {
 		@Override
 		protected String[] doInBackground(String... links) {
-			doc = Jsoup.parse(links[0]);
-			els = doc.select("option");
-			el_next = els.first();
-			club_names.clear();
-			club_names.add(el_next.text());
-			while (el_next != els.last()) {
-				el_next = el_next.nextElementSibling();
-				club_names.add(el_next.text());
+			try {
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost http = new HttpPost(links[0]);
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+					1);
+			nameValuePairs.add(new BasicNameValuePair("", ""));
+
+			http.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			String response = httpclient.execute(http, new BasicResponseHandler());
+			JSONArray clubs = new JSONArray(response);
+			for (int i = 0; i < clubs.length(); i++) {
+				JSONObject club = clubs.getJSONObject(i);
+				String club_name = club.getString("club");
+				String club_description = club.getString("description");
+				club_names.add(club_name);
+				descriptions.add(club_description);
+				
+				
+
+				// Log.d("Logs", "группа: " + group_name);
+			}
+			}catch(Exception e){
+				Log.i("Logs",e.toString());
 			}
 			return null;
 		}
@@ -158,9 +166,9 @@ import android.widget.TextView;
 		@Override
 		protected void onPostExecute(String[] result) {
 			try {
-				adapter = new ArrayAdapter<String>(getBaseContext(),
+				club_adapter = new ArrayAdapter<String>(getBaseContext(),
 						android.R.layout.simple_spinner_item, club_names);
-				ClubList.setAdapter(adapter);
+				Club_List.setAdapter(club_adapter);
 				pd.dismiss();
 			} catch (Exception e) {
 				Log.i("Logs", e.toString());

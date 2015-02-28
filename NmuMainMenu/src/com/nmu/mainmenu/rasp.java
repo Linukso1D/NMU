@@ -1,8 +1,17 @@
 package com.nmu.mainmenu;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -10,14 +19,14 @@ import org.jsoup.nodes.Document;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -30,7 +39,6 @@ import android.widget.Toast;
 
 public class rasp extends Activity {
 	TabHost tabHost;
-	WebView browser;
 	Button btn_search;
 
 	SearchView sv;
@@ -119,49 +127,51 @@ public class rasp extends Activity {
 		thursday = (TextView) findViewById(R.id.thursday);
 		friday = (TextView) findViewById(R.id.friday);
 
-		browser = (WebView) findViewById(R.id.wv);
-		browser.getSettings().setJavaScriptEnabled(true);
-		browser.addJavascriptInterface(new MyJavaScriptInterface(), "HTMLOUT");
-
-		browser.setWebViewClient(new WebViewClient() {
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				browser.loadUrl("javascript:window.HTMLOUT.processHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
-			}
-		});
 		new get_facultet().execute(get_facult);
+
 		spinner_facult.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
+				try {
+					new get_group().execute(get_group
+							+ URLEncoder.encode(spinner_facult
+									.getSelectedItem().toString(), "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-				group_flag = true;
-				schedule_flag = false;
-				schedule_teacher_flag = false;
-
-				browser.loadUrl(get_group
-						+ spinner_facult.getSelectedItem().toString());
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
-
 		spinner_group.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
-				group_flag = false;
-				schedule_teacher_flag = false;
-				schedule_flag = true;
-				String tmp = get_schedule;
-				tmp = tmp.replace("Fname", spinner_facult.getSelectedItem()
-						.toString());
-				tmp = tmp.replace("Gname", spinner_group.getSelectedItem()
-						.toString());
-				// Log.d("Logs", tmp);
+				try {
+					String tmp = get_schedule;
+					tmp = tmp.replace("Fname", URLEncoder.encode(spinner_facult
+							.getSelectedItem().toString(), "UTF-8"));
+					tmp = tmp.replace("Gname", URLEncoder.encode(spinner_group
+							.getSelectedItem().toString(), "UTF-8"));
+					new get_schedule().execute(tmp);
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-				browser.loadUrl(tmp);
-
+				if (spinner_facult.getItemAtPosition(0).toString()
+						.contains("Выберите факультет")) {
+					adapter_facult.remove((String) spinner_facult
+							.getItemAtPosition(0));
+					spinner_facult.setAdapter(adapter_facult);
+				}
+				if (!spinner_group.getItemAtPosition(0).toString()
+						.contains("Выберите группу")) {
+					spinner_group.setSelection(1);
+				}
 			}
 
 			@Override
@@ -179,35 +189,48 @@ public class rasp extends Activity {
 							"Введите фамилию для поиска", Toast.LENGTH_LONG)
 							.show();
 				} else {
-					browser.loadUrl(get_teacher_shedule
-							+ sv.getQuery().toString());
+					try {
+						new get_teacher_shedule().execute(get_teacher_shedule
+								+ URLEncoder.encode(sv.getQuery().toString(), "UTF-8"));
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
 			}
 		});
 
 	}
-
-	class MyJavaScriptInterface {
-		@JavascriptInterface
-		public String processHTML(String html) {
-			if (group_flag) {
-				new get_group().execute(html);
-			}
-			if (schedule_flag) {
-
-				new get_schedule().execute(html);
-
-			}
-			if (schedule_teacher_flag) {
-				
-				new get_teacher_shedule().execute(html);
-
-			}
-			return html;
+	protected boolean isOnline() {
+		String cs = Context.CONNECTIVITY_SERVICE;
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(cs);
+		if (cm.getActiveNetworkInfo() == null) {
+			return false;
+		} else {
+			return true;
 		}
-
 	}
-
+	
+	protected String get_html(String link) {
+		String response = null;
+		try {
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost http = new HttpPost(link);
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
+					1);
+			nameValuePairs.add(new BasicNameValuePair("", ""));
+			http.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			response = httpclient.execute(http,
+					new BasicResponseHandler());
+			
+			
+		} catch (Exception e) {
+			Log.d("Logs", e.toString());
+		}
+			return response;
+		
+	}
 	// ------------------------------------
 	public class get_facultet extends AsyncTask<String, Void, String> {
 		@Override
@@ -217,15 +240,18 @@ public class rasp extends Activity {
 				doc = Jsoup.connect(links[0]).get();
 				JSONArray facults = new JSONArray(doc.text());
 				facult_names.clear();
+				facult_names.add("Выберите факультет...");
 				for (int i = 0; i < facults.length(); i++) {
 					JSONObject facult = facults.getJSONObject(i);
 					String facult_name = facult.getString("value");
 					facult_names.add(facult_name);
-
-					// Log.d("Logs", "факультет: " + facult_name);
 				}
 			} catch (Exception e) {
 				Log.d("Logs", e.toString());
+
+				facult_names.clear();
+				SystemClock.sleep(800);
+				facult_names.add("Can't load data.");
 			}
 			return null;
 		}
@@ -235,6 +261,7 @@ public class rasp extends Activity {
 				adapter_facult = new ArrayAdapter<String>(getBaseContext(),
 						android.R.layout.simple_spinner_item, facult_names);
 				spinner_facult.setAdapter(adapter_facult);
+
 			} catch (Exception e) {
 				Log.i("Logs", e.toString());
 			}
@@ -247,9 +274,11 @@ public class rasp extends Activity {
 		protected String doInBackground(String... links) {
 			Document doc = null;
 			try {
-				doc = Jsoup.parse(links[0]);
+				
+				doc = Jsoup.parse(get_html(links[0]));
 				JSONArray groups = new JSONArray(doc.text());
 				group_names.clear();
+				group_names.add("Выберите группу...");
 				for (int i = 4; i < groups.length(); i++) {
 					JSONObject group = groups.getJSONObject(i);
 					String group_name = group.getString("value");
@@ -284,7 +313,7 @@ public class rasp extends Activity {
 		protected String doInBackground(String... links) {
 			Document doc = null;
 			try {
-				doc = Jsoup.parse(links[0]);
+				doc = Jsoup.parse(get_html(links[0]));
 			} catch (Exception e) {
 				Log.d("Logs", e.toString());
 			}
@@ -296,6 +325,10 @@ public class rasp extends Activity {
 				JSONArray all_shedule = new JSONArray(result);
 				String cur = null;
 				tv_monday.setText("");
+				tv_tuesday.setText("");
+				tv_wednesday.setText("");
+				tv_thursday.setText("");
+				tv_friday.setText("");
 				for (int i = 0; i < all_shedule.length(); i++) {
 					JSONObject current = all_shedule.getJSONObject(i);
 					cur = current.getString("weekday");
@@ -355,8 +388,7 @@ public class rasp extends Activity {
 		protected String doInBackground(String... links) {
 			Document doc = null;
 			try {
-
-				doc = Jsoup.parse(links[0]);
+				doc = Jsoup.parse(get_html(links[0]));
 			} catch (Exception e) {
 				Log.d("Logs", e.toString());
 			}

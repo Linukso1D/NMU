@@ -60,10 +60,7 @@ public class RssItem {
 
     ArrayList<RssItem> rssItems = new ArrayList<RssItem>();
     
-    RssItem rssItemT = new RssItem("MSUG news", "Best IT news.",
-        new Date(), "http://msug.vn.ua/");
 
-    rssItems.add(rssItemT);
 
     try {
       //open an URL connection make GET to the server and
@@ -121,6 +118,10 @@ public class RssItem {
       }
     } catch (Exception e) {
       e.printStackTrace();
+      RssItem rssItemT = new RssItem("No internet connection", "Cheñk you internet connection",
+    	        new Date(), "");
+
+    	    rssItems.add(rssItemT);
     }
 
     return rssItems;

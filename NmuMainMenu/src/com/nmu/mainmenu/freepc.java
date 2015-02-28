@@ -1,12 +1,20 @@
 package com.nmu.mainmenu;
 
+import java.io.IOException;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import com.google.android.gms.internal.el;
 
 import android.webkit.JavascriptInterface;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,11 +22,13 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class freepc extends Activity {
 	TextView tv;
-	WebView browser;
 	Document doc;
+	Element el;
+	Elements els;
 	int pos;
 	ProgressDialog pd;
 
@@ -27,46 +37,47 @@ public class freepc extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.freepc);
 		tv = (TextView) findViewById(R.id.tv);
-		browser = (WebView) findViewById(R.id.wv);
-		pd = new ProgressDialog(this);
-		pd.setTitle("Загрузка данных ");
-		pd.setMessage("Подождите");
-		pd.show();
-		pd.setIndeterminate(true);
-		class MyJavaScriptInterface {
-			@JavascriptInterface
-			public void processHTML(String html) {
-				doc = Jsoup.parse(html);
-				StringBuffer sb = new StringBuffer(doc.text());
-				pos = sb.lastIndexOf("В преподавательской");
-				sb = sb.delete(0, pos);
-				pos = sb.lastIndexOf("Автор");
-				sb = sb.delete(pos, sb.length());
-				String res = sb.toString();
-				res = res.replaceAll("В аудитории", "\nВ аудитории");
-				new SetText().execute(res);
-				Log.i("Logs", res);
-			}
+		if (!isOnline()) {
+			Toast.makeText(getApplicationContext(),
+					"Нет соединения с интернетом!", Toast.LENGTH_LONG).show();
+			return;
+		} else {
+			pd = new ProgressDialog(this);
+			pd.setTitle("Загрузка данных ");
+			pd.setMessage("Подождите");
+			pd.show();
+			pd.setIndeterminate(true);
+			new SetText().execute("http://m.nmu.org.ua/ajax/pcs.php");
+		
 		}
-		/* JavaScript must be enabled if you want it to work, obviously */
-		browser.getSettings().setJavaScriptEnabled(true);
-		/* Register a new JavaScript interface called HTMLOUT */
-		browser.addJavascriptInterface(new MyJavaScriptInterface(), "HTMLOUT");
-		/* WebViewClient must be set BEFORE calling loadUrl! */
-		browser.setWebViewClient(new WebViewClient() {
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				browser.loadUrl("javascript:window.HTMLOUT.processHTML('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
-			}
-		});
-		browser.loadUrl("http://m.nmu.org.ua/#freecomp");
+	}
+
+//функция проверки подкючения устройства к интернету
+	protected boolean isOnline() {
+		String cs = Context.CONNECTIVITY_SERVICE;
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(cs);
+		if (cm.getActiveNetworkInfo() == null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public class SetText extends AsyncTask<String, Void, String> {
 
 		@Override
 		protected String doInBackground(String... links) {
-			return links[0];
+			String res;
+			try {
+				doc = Jsoup.connect(links[0]).get();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			res = doc.text();
+			res = res.replaceAll("В аудитории", "\nВ аудитории");
+			return res;
 		}
 
 		@Override
