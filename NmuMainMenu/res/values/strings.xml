@@ -2,16 +2,25 @@
 <resources>
 
     <string name="app_name">NMU</string>
-    <string name="menu_authors">Об авторах</string>
-    <string name="menu_notification">Настройки</string>
-    <string name="menu_exit">Выход</string>
-    <string name="sub_menu_notification">Уведомления</string>
-    <string name="sub_menu_languages">Языки</string>
-    <string name="sub_menu_themes">Темы</string>
-    <string name="show_notification">Показывать уведомления</string>
-    <string name="block_notification">Заблокироать уведомления</string>
-    <string name="language_ukr">Українська</string>
-    <string name="language_rus">Русский</string>
-    <string name="language_eng">English</string>
+    <string name="Notification">Уведомления</string>
+    <string name="NotificationInfo">Показывать уведомления о парах</string>
+    <string name="Lang">Язык</string>
+    <string name="LangInfo">Язык приложения</string>
+    <string name="Theme">Темы</string>
+    <string name="ThemeInfo">Выберете понравившуюся тему</string>
+    
+    
+    
+    
+    <string-array name="language">
+        <item>Українська</item>
+        <item>Русский</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="language_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 
 </resources>

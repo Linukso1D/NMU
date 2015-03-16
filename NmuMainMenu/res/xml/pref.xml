@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+ xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+    
+<CheckBoxPreference
+ android:key="chb"
+ android:summary="@string/NotificationInfo"
+ android:title="@string/Notification" >
+</CheckBoxPreference>
+<ListPreference
+ android:entries="@array/language"
+ android:entryValues="@array/language_values"
+ android:key="list"
+ android:summary="@string/LangInfo"
+ android:title="@string/Lang">
+</ListPreference>
+
+<Preference
+      android:key="theme"
+ android:summary="theme"
+ 
+ android:title="theme option" 
+ >
+        <intent android:action="android.intent.action.VIEW"
+            android:data="http://www.example.com" />
+     </Preference>
+
+</PreferenceScreen>
+

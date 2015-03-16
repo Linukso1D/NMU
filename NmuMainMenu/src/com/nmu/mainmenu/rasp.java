@@ -132,19 +132,34 @@ public class rasp extends Activity {
 		spinner_facult.setOnItemSelectedListener(new OnItemSelectedListener() {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
+
 				try {
+
 					new get_group().execute(get_group
 							+ URLEncoder.encode(spinner_facult
 									.getSelectedItem().toString(), "UTF-8"));
+					group_names.add("Выберите группу...");
+					adapter_group = new ArrayAdapter<String>(getBaseContext(),
+							android.R.layout.simple_spinner_item, group_names);
+					spinner_group.setAdapter(adapter_group);
+					
+					if ((spinner_facult.getSelectedItemPosition()!=0)&&(spinner_facult.getItemAtPosition(0).toString()
+							.contains("Выберите факультет"))) {
+						int temp_pos = spinner_facult.getSelectedItemPosition();
+						adapter_facult.remove((String) spinner_facult
+								.getItemAtPosition(0));
+						spinner_facult.setAdapter(adapter_facult);
+						spinner_facult.setSelection(temp_pos - 1);	
+					}
 				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.i("Logs", e.toString());
 				}
 
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
+
 			}
 		});
 		spinner_group.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -157,20 +172,17 @@ public class rasp extends Activity {
 					tmp = tmp.replace("Gname", URLEncoder.encode(spinner_group
 							.getSelectedItem().toString(), "UTF-8"));
 					new get_schedule().execute(tmp);
+					if ((spinner_group.getSelectedItemPosition()!=0)&&(spinner_group.getItemAtPosition(0).toString()
+							.contains("Выберите группу"))) {
+						int temp_pos = spinner_group.getSelectedItemPosition();
+						adapter_group.remove((String) spinner_group
+								.getItemAtPosition(0));
+						spinner_group.setAdapter(adapter_group);
+						spinner_group.setSelection(temp_pos - 1);	
+					}
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
-
-				if (spinner_facult.getItemAtPosition(0).toString()
-						.contains("Выберите факультет")) {
-					adapter_facult.remove((String) spinner_facult
-							.getItemAtPosition(0));
-					spinner_facult.setAdapter(adapter_facult);
-				}
-				if (!spinner_group.getItemAtPosition(0).toString()
-						.contains("Выберите группу")) {
-					spinner_group.setSelection(1);
 				}
 			}
 
@@ -178,6 +190,7 @@ public class rasp extends Activity {
 			public void onNothingSelected(AdapterView<?> arg0) {
 			}
 		});
+
 		btn_search.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -191,17 +204,19 @@ public class rasp extends Activity {
 				} else {
 					try {
 						new get_teacher_shedule().execute(get_teacher_shedule
-								+ URLEncoder.encode(sv.getQuery().toString(), "UTF-8"));
+								+ URLEncoder.encode(sv.getQuery().toString(),
+										"UTF-8"));
 					} catch (UnsupportedEncodingException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+
 				}
 			}
 		});
 
 	}
+
 	protected boolean isOnline() {
 		String cs = Context.CONNECTIVITY_SERVICE;
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(cs);
@@ -211,26 +226,24 @@ public class rasp extends Activity {
 			return true;
 		}
 	}
-	
+
 	protected String get_html(String link) {
 		String response = null;
 		try {
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost http = new HttpPost(link);
-			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-					1);
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
 			nameValuePairs.add(new BasicNameValuePair("", ""));
 			http.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			response = httpclient.execute(http,
-					new BasicResponseHandler());
-			
-			
+			response = httpclient.execute(http, new BasicResponseHandler());
+
 		} catch (Exception e) {
 			Log.d("Logs", e.toString());
 		}
-			return response;
-		
+		return response;
+
 	}
+
 	// ------------------------------------
 	public class get_facultet extends AsyncTask<String, Void, String> {
 		@Override
@@ -274,7 +287,7 @@ public class rasp extends Activity {
 		protected String doInBackground(String... links) {
 			Document doc = null;
 			try {
-				
+
 				doc = Jsoup.parse(get_html(links[0]));
 				JSONArray groups = new JSONArray(doc.text());
 				group_names.clear();
@@ -322,6 +335,7 @@ public class rasp extends Activity {
 
 		protected void onPostExecute(String result) {
 			try {
+
 				JSONArray all_shedule = new JSONArray(result);
 				String cur = null;
 				tv_monday.setText("");

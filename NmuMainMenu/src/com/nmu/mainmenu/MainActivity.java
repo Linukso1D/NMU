@@ -12,29 +12,52 @@ import transport.Transport;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 @SuppressLint("SimpleDateFormat")
 public class MainActivity extends Activity implements OnClickListener {
-	int TimeTo;
-	int TimeToP;
+	private static final int IDM_ABOUT = 101;
+	private static final int IDM_SETTING = 102;
+	private static final int IDM_QUIT = 103;
+	static int parsetime;
+	//номер пары
+	static String lastParaPeremena;//+
+	//время до конца пары
+	static int timetolast;//+
+	
+	static //всего время длиться пара или перемена
+	int alltime;
+	static boolean notix;
+	MenuItem mi;
+	SharedPreferences sp;
+	TinyDB tinydb;
+	CheckBox show_notification;
+	CheckBox block_notification;
+	static int TimeTo;
+	static int TimeToP;
 	String VerTex, HorTex;
 	Timer timer;
 	SimpleDateFormat NumberMonth = null;
 	SimpleDateFormat Time = null;
 	SimpleDateFormat Time2 = null;
 	Calendar newCal = new GregorianCalendar();
+
 	Menu menu;
+
 	public String GetDay(int now) {
 		now -= 1;
 		String day[] = { " воскресенье ", " понедельник ", " вторник ",
@@ -62,90 +85,117 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	}
 
-	public String Lent(int now) {
+	public static String Lent(int now) {
 		TimeTo = now;
 		TimeToP = now;
 		String tmp = "";
 		if (now >= 800 && now < 920) {
 			TimeTo = 920 - now;
 			TimeToP = 0;
+			alltime=80;
 			tmp = " 1-я пара, ";
 		} else if (now >= 935 && now < 1055) {
 			TimeTo = 1055 - now;
 			TimeToP = 0;
+			alltime=80;
 			tmp = " 2-я пара, ";
 		} else if (now >= 1120 && now < 1240) {
 			TimeTo = 1240 - now;
 			TimeToP = 0;
+			alltime=80;
 			tmp = " 3-я пара, ";
 		} else if (now >= 1255 && now < 1415) {
 			TimeTo = 1415 - now;
 			TimeToP = 0;
+			alltime=80;
 			tmp = " 4-я пара, ";
 		} else if (now >= 1430 && now < 1550) {
 			TimeTo = 1550 - now;
 			TimeToP = 0;
+			alltime=80;
 			tmp = " 5-я пара, ";
 		} else if (now >= 1605 && now < 1725) {
 			TimeTo = 1725 - now;
 			TimeToP = 0;
+			alltime=80;
 			tmp = " 6-я пара, ";
 		} else if (now >= 1735 && now < 1855) {
 			TimeTo = 1855 - now;
 			TimeToP = 0;
+			alltime=80;
 			tmp = " 7-я пара, ";
 		} else if (now > 1905 && now < 2025) {
 			TimeTo = 2025 - now;
 			TimeToP = 0;
+			alltime=80;
 			tmp = " 8-я пара, ";
 		}
 
 		else if (now < 740 && now > 2045) {
 			TimeTo = 0;
 			TimeToP = 0;
-
+			alltime=0;
 			tmp = "";
 
 			return tmp;
 		} else if (now >= 920 && now < 935) {
 			TimeToP = 935 - now;
 			TimeTo = 0;
+			alltime=15;
 			tmp = " Перемена, ";
 		} else if (now >= 1055 && now < 1120) {
 			TimeToP = 1120 - now;
 			TimeTo = 0;
+			alltime=25;
 			tmp = " Перемена, ";
 		} else if (now >= 1240 && now < 1255) {
 			TimeToP = 1255 - now;
 			TimeTo = 0;
+			alltime=15;
 			tmp = " Перемена, ";
 		} else if (now >= 1415 && now < 1430) {
 			TimeToP = 1430 - now;
 			TimeTo = 0;
+			alltime=15;
 			tmp = " Перемена, ";
 		} else if (now >= 1550 && now < 1605) {
 			TimeToP = 1605 - now;
 			TimeTo = 0;
+			alltime=15;
 			tmp = " Перемена, ";
 		} else if (now >= 1725 && now < 1735) {
 			TimeToP = 1735 - now;
 			TimeTo = 0;
+			alltime=10;
 			tmp = " Перемена, ";
 		} else if (now >= 1855 && now < 1905) {
 			TimeToP = 1905 - now;
 			TimeTo = 0;
+			alltime=10;
 			tmp = " Перемена, ";
 		} else if (TimeToP > 40 && TimeTo > 80) {
 			TimeToP = 0;
 			TimeTo = 0;
+			alltime=0;
 			tmp = " ";
 		}
 		if (TimeTo > 59) {
 			TimeTo -= (TimeTo / 60) * 40;
+			
 		}
 		if (TimeToP > 59) {
 			TimeToP -= (TimeToP / 60) * 40;
+			
 		}
+		if (TimeTo != 0)
+		{
+			timetolast=TimeTo;
+		}
+		if (TimeToP != 0)
+		{
+			timetolast=TimeToP;
+		}
+		
 		return tmp;
 
 	}
@@ -156,12 +206,29 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		tinydb = new TinyDB(getBaseContext());
+
+		// show_notification.setChecked(tinydb.getBoolean("isUserMale"));
+
 		final Handler mHandler = new Handler();
 		setContentView(R.layout.activity_main);
+		sp = PreferenceManager.getDefaultSharedPreferences(this);
+
 		ImageButton transportBtn = (ImageButton) findViewById(R.id.transport);
 		transportBtn.setOnClickListener(this);
 		ImageButton btn_rasp = (ImageButton) findViewById(R.id.schedule);
 		btn_rasp.setOnClickListener(this);
+
+		ImageView btn_sett = (ImageView) findViewById(R.id.Sett);
+		btn_sett.setOnClickListener(this);
+		/*
+		 * btn_sett.setOnClickListener(new OnClickListener() {
+		 * 
+		 * public void onClick(View v) { Intent settingsActivity = new
+		 * Intent(getBaseContext(), PrefActivity.class);
+		 * startActivity(settingsActivity); } });
+		 */
 
 		ImageButton btn_news = (ImageButton) findViewById(R.id.news);
 		btn_news.setOnClickListener(this);
@@ -192,7 +259,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		ImageButton mapBtn = (ImageButton) findViewById(R.id.maps);
 		mapBtn.setOnClickListener(this);
-		
 
 		ShowInfText = (TextView) findViewById(R.id.main_text);
 		ShowInfText.setOnClickListener(this);
@@ -223,7 +289,7 @@ public class MainActivity extends Activity implements OnClickListener {
 									int day = newCal.get(Calendar.DAY_OF_WEEK);
 									int week = newCal
 											.get(Calendar.WEEK_OF_YEAR);
-									int parsetime = (Integer.parseInt(Time2
+									parsetime = (Integer.parseInt(Time2
 											.format(currentDate).replaceAll(
 													" ", "")));
 
@@ -257,6 +323,17 @@ public class MainActivity extends Activity implements OnClickListener {
 
 												ShowInfText.setText(HorTex);
 											}
+										//уведомления 	
+											lastParaPeremena=Lent(parsetime) ;
+										 Log.d("SERVICE", " MAIN ACT _ lastPara"+lastParaPeremena);
+											if(notix==true){
+												startService(new Intent(getApplicationContext(), MyService.class).putExtra("NomPar", lastParaPeremena).putExtra("timetolast", timetolast).putExtra("alltime", alltime));
+											}
+											else
+											{
+												stopService(new Intent(getApplicationContext(), MyService.class));
+											}
+											
 										}
 									};
 									// out
@@ -269,36 +346,51 @@ public class MainActivity extends Activity implements OnClickListener {
 						};
 						t.start();
 					};
-				}, 0, 8000);
+				}, 0, 40000);
 
+	}
+
+	protected void onResume() {
+		String listValue = sp.getString("list", "не выбрано");
+		notix = sp.getBoolean("chb", false);
+		Toast toast = Toast.makeText(getApplicationContext(), "Выбран язык "
+				+ listValue+"chb=" + notix, Toast.LENGTH_SHORT);
+		toast.show();
+
+		super.onResume();
 	}
 
 	// =============MENU========================
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menu_main, menu);
-		
-		return true;
+		mi = menu.add(0, IDM_ABOUT, 1, "Об авторе");
+		mi = menu.add(0, IDM_QUIT, 3, "Выход");
+		mi = menu.add(0, IDM_SETTING, 2, "Настройки");
+		mi.setIntent(new Intent(this, PrefActivity.class));
+		return super.onCreateOptionsMenu(menu);
+
 	}
 
 	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Операции для выбранного пункта меню
-        switch (item.getItemId()) {
-            case R.id.menu_exit:
-            	 System.exit(0);
-            case R.id.menu_authors:
-            	Intent intent_authors = new Intent(this, authors.class);
-        		startActivity(intent_authors);	
-            case R.id.sub_menu_themes:	
-            	Intent intent_themes = new Intent(this, themes.class);
-        		startActivity(intent_themes);	
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        
-    }
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Операции для выбранного пункта меню
+
+		// return super.onCreateOptionsMenu(menu);
+
+		switch (item.getItemId()) {
+		case IDM_QUIT:
+			System.exit(0);
+		case IDM_ABOUT:
+			Intent intent_authors = new Intent(this, authors.class);
+			startActivity(intent_authors);
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
 	// =============MENU========================
 	@Override
 	public void onClick(View v) {
@@ -351,6 +443,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.freepc:
 			Intent freepc_Intent = new Intent(this, freepc.class);
 			startActivity(freepc_Intent);
+			break;
+		case R.id.Sett:
+			Intent PrefActivity = new Intent(getBaseContext(),
+					PrefActivity.class);
+			startActivity(PrefActivity);
 			break;
 		case R.id.calendar:
 			Intent calendar_Intent = new Intent(this, calendar.class);

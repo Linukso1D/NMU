@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="text_size">40sp</dimen>
-    <dimen name="text_button_size">37sp</dimen>
-    <dimen name="text_view_padding_t_b">50dp</dimen>
-    <dimen name="row1_padding_top">20dp</dimen>
-</resources>
